@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # @Time : 2023/4/24 22:24
 # @Author : 刘秉星
-# @Site : 
+# @Site :
 # @File : main.py
 # @Software: PyCharm
 import torch
@@ -21,15 +21,12 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 '''
 # 加载预训练的ResNet模型
 model = models.resnet50(pretrained=True)
-
 # 修改最后的全连接层以适应19个类别
 num_features = model.fc.in_features
 model.fc = torch.nn.Linear(num_features, 19)
-
 model = model.to(device)
 criterion = torch.nn.CrossEntropyLoss()
 optimizer = optim.SGD(model.parameters(), lr=0.001, momentum=0.9)
-
 train_loader, test_loader = get_data_loaders('train', 'test')
 '''
 
@@ -50,11 +47,9 @@ train_loader, test_loader = get_data_loaders_VGG('train', 'test')
 
 '''
 使用LeNet5的
-
 model = LeNet5().to(device)
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(model.parameters(), lr=0.001, momentum=0.9)
-
 train_loader, test_loader = get_data_loaders('./train', './test')
 '''
 
